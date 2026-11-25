@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A3028">
+  <meta name="description" content="Acesse a demonstração LUMI Eventos.">
+  <title>Entrar | LUMI Eventos</title>
+  <link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="login">
+  <div id="site-header"></div>
+  <div id="toast-area" role="status" aria-live="polite"></div>
+  <main id="main-content">
+<section class="auth-section section-shell auth-login">
+  <aside class="auth-aside"><div class="auth-aside-art"><span class="eyebrow eyebrow-light">Seu lugar é aqui</span><h1>Os melhores encontros <em>merecem voltar.</em></h1><p>Acesse seus eventos favoritos e os QR Codes dos seus ingressos.</p><div class="auth-aside-logo">LUMI<span> ✧</span></div></div></aside>
+  <div class="auth-card"><span class="eyebrow">Bom ter você de volta</span><h2>Entre na sua conta.</h2><p class="muted">Ainda não tem cadastro? <a href="cadastro.html" id="signup-link" class="underlined">Cadastre-se</a>.</p>
+    <div class="notice notice-amber"><strong>Protótipo escolar.</strong> Use uma conta fictícia criada neste servidor, ou um login da equipe autorizado.</div>
+    <form id="login-form" class="form-grid" novalidate>
+      <div class="field field-full"><label for="login-email">E-mail</label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></div>
+      <div class="field field-full"><label for="login-password">Senha</label><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required></div>
+      <p class="field-full form-error" id="login-error" role="alert" hidden></p>
+      <button type="submit" class="btn btn-primary btn-block field-full">Entrar <span aria-hidden="true">↗</span></button>
+    </form>
+    <div class="auth-subtle">Quer trabalhar com a equipe do evento? <a href="admin.html" class="underlined">Acesso administrativo demonstrativo</a></div>
+  </div>
+</section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p class="noscript">Ative o JavaScript do navegador para utilizar a demonstração da LUMI.</p></noscript>
+</body>
+</html>

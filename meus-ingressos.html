@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A3028">
+  <meta name="description" content="Consulte ingressos com QR Code individual.">
+  <title>Meus ingressos | LUMI Eventos</title>
+  <link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script src="/vendor/qrcode.min.js" defer></script>
+
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/vendor/jspdf.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="meus-ingressos">
+  <div id="site-header"></div>
+  <div id="toast-area" role="status" aria-live="polite"></div>
+  <main id="main-content">
+<section class="page-heading section-shell"><div><span class="eyebrow">Tudo em um só lugar</span><h1>Meus <em>ingressos.</em></h1><p>Seus momentos merecem um lugar especial. Encontre aqui seus QR Codes individuais.</p></div><span class="heading-decor" aria-hidden="true">⌁</span></section>
+<section class="section-shell tickets-page-body"><div class="notice notice-amber">Ingressos e QR Codes são <strong>exclusivamente demonstrativos</strong>. A validação e as compras são compartilhadas no banco SQLite do servidor, mas não valem para eventos reais.</div><div id="tickets-summary"></div><div id="my-tickets" class="ticket-list"></div></section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p class="noscript">Ative o JavaScript do navegador para utilizar a demonstração da LUMI.</p></noscript>
+</body>
+</html>

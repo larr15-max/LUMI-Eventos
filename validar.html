@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4A3028"><title>Validar ingressos | LUMI Eventos</title>
+<link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="/socket.io/socket.io.js" defer></script><script src="/vendor/html5-qrcode.min.js" defer></script>
+<script src="script.js" defer></script></head><body data-page="validar">
+<div id="site-header"></div><div id="toast-area" role="status" aria-live="polite"></div>
+<main id="main-content"><section class="page-heading section-shell admin-heading"><div><span class="eyebrow">Equipe LUMI · entrada</span><h1>Validação de <em>ingressos.</em></h1><p>Leitura por câmera, imagem ou código completo e controle de entrada.</p></div><span class="heading-decor" aria-hidden="true">✧</span></section>
+<section class="section-shell operations-area"><div id="access-denied" class="empty-state" hidden><h2>Acesso restrito à equipe</h2><p>Entre com o usuário e senha da sua função para acessar este módulo.</p><a href="login.html" class="btn btn-primary">Entrar na LUMI</a></div>
+<div id="workspace" hidden>
+<div class="operation-layout"><aside class="operation-sidebar"><div class="sidebar-label">PAINEL LUMI</div><a href="admin.html">◈ Visão geral</a><a href="caixa.html">▣ Caixa de vendas</a><a href="estoque.html">▤ Estoque e capacidade</a><a href="financeiro.html">◉ Financeiro</a><a href="equipe.html">♧ Equipe e caixas</a><a href="validar.html">▦ Validar QR Code</a><div class="sidebar-live"><span id="network-status">● Ligado ao servidor</span><small>Os dados ficam na base SQLite do notebook.</small></div></aside><div class="operation-main"><div class="operation-intro"><div><span class="eyebrow">Controle de acesso</span><h2>Validação de ingressos</h2><p>Uma mesma base para todos os validadores. Um código só pode ser utilizado uma vez.</p></div><span class="network-pill">● Acesso centralizado</span></div>
+<div class="notice notice-amber"><strong>Câmera em celulares:</strong> navegadores exigem HTTPS confiável no acesso pela LAN. Em HTTP, use a opção de enviar imagem ou o código completo.</div>
+<div class="validate-columns"><section class="validate-card"><h2>Leitor de QR Code</h2><p class="muted">Utilize a câmera ou envie uma imagem de um ingresso LUMI.</p><div id="qr-reader" class="qr-reader"></div>
+<div class="form-actions"><button class="btn btn-primary" type="button" id="start-scanner">Iniciar câmera</button><button class="btn btn-outline" type="button" id="stop-scanner" disabled>Parar câmera</button></div>
+<div class="upload-line"><label class="btn btn-outline" for="qr-file">Selecionar imagem</label><input id="qr-file" type="file" accept="image/*" class="visually-hidden"></div>
+<p class="helper-text" id="scanner-info">A câmera depende de permissão do navegador e de uma conexão HTTPS confiável em dispositivos remotos.</p>
+<div class="manual-check"><h3>Conferir código manualmente</h3><label for="manual-ticket-code">Insira o código exclusivo completo (não apenas parte)</label><div class="manual-input-row"><input id="manual-ticket-code" placeholder="LUMI2. ..." autocomplete="off"><button class="btn btn-primary" type="button" id="manual-validate">Conferir</button></div></div></section>
+<section class="validate-card"><h2>Resultado da verificação</h2><p class="muted">Para ingressos válidos, confirme a entrada. A atualização ocorre no servidor.</p><div id="validation-result" class="validation-result"><div class="empty-icon">▦</div><p>Aguardando leitura.</p></div></section></div></div></div>
+</div></section></main><div id="site-footer"></div><noscript>Ative o JavaScript.</noscript></body></html>

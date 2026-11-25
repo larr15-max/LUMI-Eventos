@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4A3028"><title>Administração | LUMI Eventos</title>
+<link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="/socket.io/socket.io.js" defer></script>
+<script src="script.js" defer></script></head><body data-page="admin">
+<div id="site-header"></div><div id="toast-area" role="status" aria-live="polite"></div>
+<main id="main-content"><section class="page-heading section-shell admin-heading"><div><span class="eyebrow">Equipe LUMI · administração</span><h1>Painel <em>administrativo.</em></h1><p>Acompanhe a operação em tempo real e controle todos os eventos.</p></div><span class="heading-decor" aria-hidden="true">✧</span></section>
+<section class="section-shell operations-area"><div id="access-denied" class="empty-state" hidden><h2>Acesso restrito à equipe</h2><p>Entre com o usuário e senha da sua função para acessar este módulo.</p><a href="login.html" class="btn btn-primary">Entrar na LUMI</a></div>
+<div id="workspace" hidden>
+<div class="operation-layout"><aside class="operation-sidebar"><div class="sidebar-label">PAINEL LUMI</div><a href="admin.html">◈ Visão geral</a><a href="caixa.html">▣ Caixa de vendas</a><a href="estoque.html">▤ Estoque e capacidade</a><a href="financeiro.html">◉ Financeiro</a><a href="equipe.html">♧ Equipe e caixas</a><a href="validar.html">▦ Validar QR Code</a><div class="sidebar-live"><span id="network-status">● Ligado ao servidor</span><small>Os dados ficam na base SQLite do notebook.</small></div></aside><div class="operation-main"><div class="operation-intro"><div><span class="eyebrow">Gestão integrada</span><h2>Visão geral da operação</h2><p>Eventos, clientes, ingressos e vendas sincronizados em todos os dispositivos.</p></div><a href="caixa.html" class="btn btn-primary">Abrir caixa de vendas ↗</a></div>
+<div class="notice notice-amber"><strong>Ambiente escolar.</strong> As confirmações de PIX, cartão e dinheiro são registros simulados; nenhuma cobrança ou transação bancária é realizada.</div>
+<div class="stats-grid" id="admin-stats"></div><div id="admin-alerts"></div>
+<div class="admin-section-heading"><div><span class="eyebrow">Programação e lotação</span><h2>Gerenciar eventos</h2></div><button type="button" class="btn btn-primary" id="admin-add-event">+ Novo evento</button></div>
+<div id="event-form-shell" class="admin-form-shell" hidden><div class="admin-form-head"><h3 id="event-form-title">Cadastro de evento</h3><button type="button" id="event-cancel-edit" class="icon-button" aria-label="Fechar edição">×</button></div>
+<form id="admin-event-form" class="form-grid"><input type="hidden" id="event-id">
+<div class="field field-full"><label for="event-name">Nome</label><input id="event-name" required maxlength="100"></div>
+<div class="field"><label for="event-type">Categoria</label><select id="event-type"><option>Festival</option><option>Festa</option><option>Música</option><option>Experiência</option></select></div>
+<div class="field"><label for="event-status">Status</label><select id="event-status"><option value="ATIVO">Ativo</option><option value="ARQUIVADO">Arquivado</option></select></div>
+<div class="field"><label for="event-price">Preço por ingresso (R$)</label><input type="number" id="event-price" min="0" max="100000" step="0.01" required></div>
+<div class="field"><label for="event-variable-cost">Custo variável unitário (R$)</label><input type="number" id="event-variable-cost" min="0" max="100000" step="0.01" value="0" required></div>
+<div class="field"><label for="event-date">Data</label><input id="event-date" type="date" required></div>
+<div class="field"><label for="event-time">Horário</label><input id="event-time" type="time" required></div>
+<div class="field"><label for="event-venue">Local</label><input id="event-venue" maxlength="90" required></div>
+<div class="field"><label for="event-city">Cidade / UF</label><input id="event-city" maxlength="90" required></div>
+<div class="field"><label for="event-capacity">Capacidade máxima</label><input id="event-capacity" type="number" min="1" step="1" required></div>
+<div class="field"><label for="event-wristband">Material consumido por ingresso (opcional)</label><select id="event-wristband"><option value="">Nenhum</option></select></div>
+<div class="field field-full"><label for="event-image">Imagem (caminho assets/ ou URL HTTPS)</label><input type="text" id="event-image" placeholder="assets/festival-aurora.svg"></div>
+<div class="field field-full"><label for="event-description">Descrição</label><textarea id="event-description" rows="3" maxlength="450" required></textarea></div>
+<p class="form-error field-full" id="admin-event-error" hidden></p><div class="form-actions field-full"><button class="btn btn-primary" type="submit">Salvar evento</button><button class="btn btn-outline" type="button" id="event-cancel-edit-secondary">Cancelar</button></div>
+</form></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Evento</th><th>Data</th><th>Preço</th><th>Disponíveis</th><th>Situação</th><th>Ações</th></tr></thead><tbody id="admin-events-list"></tbody></table></div>
+<div class="admin-section-heading"><div><span class="eyebrow">Conferência de vendas</span><h2>Vendas registradas</h2></div></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Comprador / horário</th><th>Evento</th><th>Total</th><th>Pagamento / funcionário</th><th>Caixa</th><th>Status</th><th>Ação</th></tr></thead><tbody id="admin-sales-list"></tbody></table></div>
+<div class="admin-section-heading"><div><span class="eyebrow">QR Codes individuais</span><h2>Consultar ingressos</h2></div><a class="btn btn-outline btn-sm" href="validar.html">Abrir validador</a></div>
+<div class="table-filter-row"><input id="admin-ticket-search" type="search" placeholder="Código, evento ou comprador"><select id="admin-ticket-status"><option value="all">Todos</option><option value="VALIDO">Válidos</option><option value="UTILIZADO">Utilizados</option><option value="CANCELADO">Cancelados</option></select></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Ingresso</th><th>Comprador</th><th>Emissão</th><th>Status</th><th>Ação</th></tr></thead><tbody id="admin-tickets-list"></tbody></table></div>
+<div class="admin-section-heading"><div><span class="eyebrow">Relacionamento</span><h2>Compradores cadastrados</h2></div></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Nome</th><th>E-mail</th><th>Ingressos</th><th>Compras</th></tr></thead><tbody id="admin-buyers-list"></tbody></table></div></div></div>
+</div></section></main><div id="site-footer"></div><noscript>Ative o JavaScript.</noscript></body></html>

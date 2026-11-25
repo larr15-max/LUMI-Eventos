@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4A3028"><title>Financeiro | LUMI Eventos</title>
+<link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="/socket.io/socket.io.js" defer></script>
+<script src="script.js" defer></script></head><body data-page="financeiro">
+<div id="site-header"></div><div id="toast-area" role="status" aria-live="polite"></div>
+<main id="main-content"><section class="page-heading section-shell admin-heading"><div><span class="eyebrow">Equipe LUMI · contabilidade</span><h1>Painel <em>financeiro.</em></h1><p>Acompanhe automaticamente os resultados de cada evento.</p></div><span class="heading-decor" aria-hidden="true">✧</span></section>
+<section class="section-shell operations-area"><div id="access-denied" class="empty-state" hidden><h2>Acesso restrito à equipe</h2><p>Entre com o usuário e senha da sua função para acessar este módulo.</p><a href="login.html" class="btn btn-primary">Entrar na LUMI</a></div>
+<div id="workspace" hidden>
+<div class="operation-layout"><aside class="operation-sidebar"><div class="sidebar-label">PAINEL LUMI</div><a href="admin.html">◈ Visão geral</a><a href="caixa.html">▣ Caixa de vendas</a><a href="estoque.html">▤ Estoque e capacidade</a><a href="financeiro.html">◉ Financeiro</a><a href="equipe.html">♧ Equipe e caixas</a><a href="validar.html">▦ Validar QR Code</a><div class="sidebar-live"><span id="network-status">● Ligado ao servidor</span><small>Os dados ficam na base SQLite do notebook.</small></div></aside><div class="operation-main"><div class="operation-intro"><div><span class="eyebrow">Contabilidade demonstrativa</span><h2>Controle financeiro</h2><p>Receitas, despesas, lucro, margem e ponto de equilíbrio.</p></div><div class="field"><label for="finance-event">Evento no relatório</label><select id="finance-event"></select></div></div>
+<div class="notice notice-amber"><strong>Financeiro demonstrativo.</strong> PIX, cartão e dinheiro são apenas registrados para a escola; não há integração bancária. Compras integralmente canceladas ficam fora da receita.</div>
+<div class="stats-grid" id="finance-kpis"></div>
+<div class="finance-two"><section class="op-panel"><h2>Receita por pagamento</h2><p>Distribuição do faturamento simulado.</p><div id="finance-chart"></div></section><section class="op-panel"><h2>Resumo financeiro</h2><div id="finance-details"></div></section></div>
+<section class="op-panel" id="break-even"></section>
+<div class="admin-section-heading"><div><span class="eyebrow">Custos da produção</span><h2>Despesas do evento</h2></div></div>
+<div class="op-panel"><form id="expense-form" class="form-grid"><div class="field"><label for="expense-event">Evento</label><select id="expense-event" required></select></div><div class="field"><label for="expense-category">Categoria</label><select id="expense-category"><option>Decoração</option><option>Aluguel do espaço</option><option>Alimentação</option><option>Bebidas</option><option>Equipamentos</option><option>Funcionários</option><option>Divulgação</option><option>Materiais</option><option>Outros</option></select></div>
+<div class="field field-full"><label for="expense-description">Descrição da despesa</label><input id="expense-description" maxlength="120" required></div><div class="field"><label for="expense-value">Valor (R$)</label><input id="expense-value" type="number" min="0" step="0.01" required></div><div class="field"><label for="expense-date">Data</label><input id="expense-date" type="date" required></div>
+<div class="field field-full"><label for="expense-notes">Observações</label><textarea id="expense-notes" rows="2" maxlength="500"></textarea></div><div class="field field-full"><label class="check-field"><input id="expense-fixed" type="checkbox" checked> Incluir como custo fixo no ponto de equilíbrio</label></div>
+<p id="expense-error" class="form-error field-full" hidden></p><div class="field-full"><button class="btn btn-primary" type="submit">Registrar despesa</button></div></form></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>Despesa</th><th>Evento</th><th>Categoria</th><th>Data</th><th>Valor</th><th>Ações</th></tr></thead><tbody id="finance-expenses"></tbody></table></div><p id="finance-caution" class="fine-print"></p></div></div>
+</div></section></main><div id="site-footer"></div><noscript>Ative o JavaScript.</noscript></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A3028">
+  <meta name="description" content="Conheça os eventos fictícios da LUMI.">
+  <title>Eventos | LUMI Eventos</title>
+  <link rel="icon" type="image/png" href="assets/lumi-identidade.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="eventos">
+  <div id="site-header"></div>
+  <div id="toast-area" role="status" aria-live="polite"></div>
+  <main id="main-content">
+<section class="page-heading section-shell"><div><span class="eyebrow">A agenda que ilumina</span><h1>Encontre seu próximo <em>momento.</em></h1><p>Descubra festas, festivais e experiências cuidadosamente selecionadas.</p></div><span class="heading-decor" aria-hidden="true">✧</span></section>
+<section class="section-shell events-page-body">
+  <div class="filters-bar"><div class="search-field"><span aria-hidden="true">⌕</span><label class="sr-only" for="event-search">Pesquisar eventos</label><input id="event-search" type="search" placeholder="Pesquisar pelo nome do evento..."></div>
+    <div class="filter-field"><label for="event-category">Categoria</label><select id="event-category"><option value="all">Todas as categorias</option><option value="Festival">Festivais</option><option value="Festa">Festas</option><option value="Música">Música ao vivo</option><option value="Experiência">Experiências</option></select></div>
+    <div class="filter-field"><label for="event-sort">Ordenar</label><select id="event-sort"><option value="date">Próximos primeiro</option><option value="low">Menor preço</option><option value="high">Maior preço</option></select></div>
+  </div>
+  <div class="results-line"><span id="events-count">— eventos encontrados</span><span>Valores em R$ · compra demonstrativa</span></div>
+  <div id="all-events" class="events-grid"><div class="empty-inline">Carregando eventos...</div></div>
+</section>
+<div class="modal-backdrop" id="checkout-modal" hidden><div class="checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkout-title"><button type="button" class="modal-close" data-close-checkout aria-label="Fechar compra">×</button><div id="checkout-content"></div></div></div>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p class="noscript">Ative o JavaScript do navegador para utilizar a demonstração da LUMI.</p></noscript>
+</body>
+</html>
